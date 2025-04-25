@@ -11,6 +11,7 @@ export const Question: FC<{ userId: string }> = ({ userId }) => {
     const [question, setQuestion] = useState<{ text: string; _id: string } | null>(null);
     const [loading, setLoading] = useState(true);
     const [isFetching, setIsFetching] = useState(false);
+    const [hasFetchedOnce, setHasFetchedOnce] = useState(false);
 
     const fetchQuestion = async () => {
         if (isFetching || !userId) return;
@@ -23,11 +24,13 @@ export const Question: FC<{ userId: string }> = ({ userId }) => {
         } catch (error) {
             console.error("Ошибка при получении вопроса:", error);
         } finally {
+            setHasFetchedOnce(true); // <- добавили
             setLoading(false);
             setIsFetching(false);
             setVisible(true);
         }
     };
+
 
     useEffect(() => {
         fetchQuestion();
@@ -64,13 +67,14 @@ export const Question: FC<{ userId: string }> = ({ userId }) => {
         );
     }
 
-    if (!question && !loading && userId) {
+    if (!question && !loading && hasFetchedOnce) {
         return (
             <Container>
                 <FinalInfo />
             </Container>
         );
     }
+
 
     return (
         <Container>
