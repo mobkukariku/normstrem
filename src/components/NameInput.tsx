@@ -6,15 +6,18 @@ export const NameInput: FC = () => {
     const [isFocused, setIsFocused] = useState(false);
     const [inputName, setInputName] = useState('');
 
-    const handleStart = () => {
+    const handleStart = async () => {
         if (inputName.trim()) {
-            createUser(inputName);
-
-            setTimeout(() => {
+            try {
+                const userId = await createUser(inputName);
+                localStorage.setItem("userId", userId);
                 window.location.href = "/question";
-            }, 500);
+            } catch (error) {
+                console.error("Ошибка при создании пользователя:", error);
+            }
         }
     };
+
 
     return (
         <div className="flex flex-col mt-[50px] gap-2">

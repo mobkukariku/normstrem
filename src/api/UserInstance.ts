@@ -5,8 +5,9 @@ export const createUser = async (name:string) => {
         const res = await axiosInstance.post('/user', {
             name: name
         });
-        localStorage.setItem('userId', JSON.stringify(res.data._id));
         console.log(res.data);
+
+        return res.data._id;
     } catch (err) {
         console.error(err);
     }
