@@ -17,10 +17,11 @@ export const LandingText: FC = () => {
                     <p className="text-4xl font-bold my-4 text-[#3fe593] drop-shadow-lg">
                         Добро пожаловать 👋
                     </p>
-                    <span className="text-white font-medium text-xl max-w-xl opacity-80 mb-6">
-                        Я собрал этот сайт по приколу — просто захотелось попробовать кое-что новое.
-                        Если интересно — залетай!
-                    </span>
+                        <span className="text-white font-medium text-xl max-w-xl opacity-80 mb-6">
+                            Короче, тут такая тема 👇
+                            <br />
+                            Прост овбей имя — и поехали. А дальше уже сам поймёшь, что за движ 😏
+                        </span>
 
                     <NameInput />
                 </motion.div>
